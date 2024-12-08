@@ -71,6 +71,13 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.11"
+      - name: Recover cached deps
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/work/<path>/example-app/.venv
+          key: ${{ runner.os }}-venv
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -85,13 +92,7 @@ jobs:
     # You may pin to the exact commit or the version.
     # uses: snok/install-poetry@93ada01c735cc8a383ce0ce2ae205a21c415379b
         uses: snok/install-poetry@v1.3.4
-      - name: Recover cached deps
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/work/<path>/example-app/.venv
-          key: ${{ runner.os }}-venv
-
+      
       - name: Run Lint
         run: poetry run task lint
       - name: Run Format
@@ -105,6 +106,13 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
+      - name: Recover cached deps
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/work/<path>/example-app/.venv
+          key: ${{ runner.os }}-venv
+
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
         uses: actions/setup-python@v3
@@ -129,12 +137,7 @@ jobs:
     # You may pin to the exact commit or the version.
     # uses: snok/install-poetry@93ada01c735cc8a383ce0ce2ae205a21c415379b
         uses: snok/install-poetry@v1.3.4
-      - name: Recover cached deps
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/work/<path>/example-app/.venv
-          key: ${{ runner.os }}-venv
+      
       - name: Run tests
         run: poetry run task test
       
