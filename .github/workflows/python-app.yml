@@ -107,12 +107,7 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
-      - name: Recover cached deps
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/work/iac-labs/iac-labs/example-app/.venv
-          key: ${{ runner.os }}-venv
+      
 
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
@@ -129,7 +124,12 @@ jobs:
       # - name: Test with pytest
       #   run: |
       #     pytest
-  
+      - name: Recover cached deps
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/work/iac-labs/iac-labs/example-app/.venv
+          key: ${{ runner.os }}-venv
       - name: Install Poetry Action
     # You may pin to the exact commit or the version.
     # uses: snok/install-poetry@93ada01c735cc8a383ce0ce2ae205a21c415379b
