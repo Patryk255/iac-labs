@@ -62,6 +62,9 @@ jobs:
   lintformattersecurity:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
@@ -103,6 +106,9 @@ jobs:
   unittests:
     needs: lintformattersecurity
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./example-app
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
