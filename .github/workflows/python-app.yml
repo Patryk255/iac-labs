@@ -175,7 +175,7 @@ jobs:
       - name: Run Sec
         run: poetry run task security
   unittests:
-    needs: {Lint, Formatter, Security}
+    needs: [Lint, Formatter, Security]
     runs-on: ubuntu-latest
     defaults:
       run:
